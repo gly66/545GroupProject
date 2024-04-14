@@ -17,10 +17,10 @@ Our applications are designed to help users meticulously track the contents of t
 
 ### Target Audience  
 Families with Specific Characteristics:  
-Large Families: Households with multiple children or extended family members living together tend to have higher food consumption and waste. Targeting these families could address significant food management challenges.
-Suburban Families: These families often have more storage space, leading to overbuying and increased food spoilage. Tailoring features to help them manage bulk purchases effectively could reduce waste.
-Environmentally Conscious Families: Families that are already motivated by sustainability efforts are more likely to adopt tools that help reduce their environmental footprint, including minimizing food waste.
-Co-renters with Defined Needs:  
-Student Sharers: Groups of students living together often face challenges in coordinating food purchases and consumption, leading to unnecessary waste. Your app can help manage shared responsibilities and improve communication regarding food usage.
-Young Professionals in Shared Housing: Like students, young working adults sharing accommodation may struggle with similar issues around food management. Offering features that facilitate split expenses and joint shopping lists can be particularly appealing.
-Urban Co-renters: Those living in urban environments tend to shop more frequently but in smaller quantities due to limited storage space. Features that help track perishable goods can help prevent spoilage and overbuying.
+Large Families: Households with multiple children or extended family members living together tend to have higher food consumption and waste. Targeting these families could address significant food management challenges.  
+Suburban Families: These families often have more storage space, leading to overbuying and increased food spoilage. Tailoring features to help them manage bulk purchases effectively could reduce waste.  
+Environmentally Conscious Families: Families that are already motivated by sustainability efforts are more likely to adopt tools that help reduce their environmental footprint, including minimizing food waste.  
+Co-renters with Defined Needs:    
+Student Sharers: Groups of students living together often face challenges in coordinating food purchases and consumption, leading to unnecessary waste. Your app can help manage shared responsibilities and improve communication regarding food usage.  
+Young Professionals in Shared Housing: Like students, young working adults sharing accommodation may struggle with similar issues around food management. Offering features that facilitate split expenses and joint shopping lists can be particularly appealing.  
+Urban Co-renters: Those living in urban environments tend to shop more frequently but in smaller quantities due to limited storage space. Features that help track perishable goods can help prevent spoilage and overbuying.  
