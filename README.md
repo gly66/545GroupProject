@@ -55,7 +55,7 @@ Online connectivity:
 Challenge: The challenge of requiring constant online connectivity for data sharing in your fridge management app is a significant one, especially given the need for real-time synchronization among multiple users, such as family members or co-renters.  
 Solution: Develop the app to primarily function online to enable real-time data sharing and updates. This ensures that all users have the most current information about the fridge contents, reducing the risk of food waste and miscommunication. Also, We can Implement offline features that allow users to access and manage the fridge inventory even without an internet connection.  
 
-Data storage: 
+Data storage:  
 Challenge: Ensuring robust data storage and management is critical for the success of your fridge management app, especially given its reliance on accurate and timely information about users' fridge contents.  
 Solution: Utilize reliable cloud services for storing and managing data to ensure scalability, security, and high availability. Cloud storage will allow users to access their data from any device and facilitate easier updates and backups.  
 
