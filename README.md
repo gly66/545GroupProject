@@ -43,9 +43,13 @@ Complex User Interfaces: Some apps may have complex or non-intuitive user interf
 Include targeted ads from food brands, supermarkets and local businesses in the app based on user data, as well as sponsored content that is seamlessly integrated into the app experience. In addition, a donation model could be implemented to allow users to make voluntary contributions, providing them with membership levels that allow them to enjoy benefits such as premium features and ad-free usage. Cross-promotions with grocery stores and paid value-added services such as personalized meal plans could further increase revenue. Maintain transparency in the use of funds to foster trust and loyalty, and engage users through feedback to align the monetization strategy with their expectations and needs.  
 
 ## Initial Design  
+
 **Purpose**
+
 The MVP of our Fridge Assistant app aims to provide users with a seamless experience for managing their fridge contents, reducing food waste, and facilitating household organization.
+
 **Scope and Limitations**
+
 The MVP will focus on basic functionalities including user authentication, fridge creation, member invitation, food inventory management, expiration date tracking, notifications/reminders, and access to recipe information. Limitations may include lack of advanced features such as barcode scanning and integrations with grocery delivery services.
 
 ### UI/UX Design
