@@ -43,7 +43,43 @@ Complex User Interfaces: Some apps may have complex or non-intuitive user interf
 Include targeted ads from food brands, supermarkets and local businesses in the app based on user data, as well as sponsored content that is seamlessly integrated into the app experience. In addition, a donation model could be implemented to allow users to make voluntary contributions, providing them with membership levels that allow them to enjoy benefits such as premium features and ad-free usage. Cross-promotions with grocery stores and paid value-added services such as personalized meal plans could further increase revenue. Maintain transparency in the use of funds to foster trust and loyalty, and engage users through feedback to align the monetization strategy with their expectations and needs.  
 
 ## Initial Design  
-.......  
+
+**Purpose**
+
+The MVP of our Fridge Assistant app aims to provide users with a seamless experience for managing their fridge contents, reducing food waste, and facilitating household organization.
+
+**Scope and Limitations**
+
+The MVP will focus on basic functionalities including user authentication, fridge creation, member invitation, food inventory management, expiration date tracking, notifications/reminders, and access to recipe information. Limitations may include lack of advanced features such as barcode scanning and integrations with grocery delivery services.
+
+### UI/UX Design
+Login/Register Page: Simple email/password authentication.
+
+First Page: Add/Create fridge with a name, invite/manage members via email.
+
+Home Page: Intuitive layout for adding/deleting food items, editing quantities, and setting expiration dates. Alerts and notifications for reminders displayed prominently.
+
+User Page: Profile settings including user name, email, and password management.
+
+Info Page: Access to recipe information.
+
+![5b09875de20172cdd0f0b02ad3a1f66](https://github.com/gly66/545GroupProject/assets/80219810/5c580c7c-6397-4bfc-bc49-5935214a6c57)
+
+### Technical Architecture
+Data Structures: Database to store user information, fridge details, and food inventory.
+
+Storage Considerations: Cloud storage for scalable and accessible data storage.
+
+Web/Cloud Interactions: Use of APIs for sending notifications/reminders and accessing recipe information.
+
+Measurement of Success: Metrics may include user engagement (number of active users, frequency of app usage), reduction in food waste (tracked through user input on expired items), and user satisfaction (gathered through feedback surveys or ratings).
+
+**Dependencies**
+
+Email service API for user authentication and notifications.
+Recipe API for accessing recipe information.
+Cloud storage service for data storage and retrieval.
+
 
 ## Challenges and Open Questions  
 **Technical Challenges**  
