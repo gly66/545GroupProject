@@ -1,6 +1,7 @@
 # 545GroupProject
-Group Members: 
+Fridge Assistant  
 
-Jeremy Gao
+Wendy Wen, Jeremy Gao  
 
-Wendy Wen
+Version #1.0  
+
