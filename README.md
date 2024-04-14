@@ -3,7 +3,7 @@ Fridge Assistant
 
 Wendy Wen, Jeremy Gao  
 
-Version #1.0  
+Version #2.0  
 
 ## Summary of Project  
 Your kitchen companion! Say goodbye to food waste and fridge rummaging. With 40% of food waste occurring at home (EPA), our app empowers users to reduce waste by tracking fridge contents and expiry dates with precision. Discover recipe ideas based on available ingredients, linked to Chrome for detailed cooking instructions. Plus, streamline household management with multi-device and multi-account support. Join us in revolutionizing kitchen efficiency and minimizing food waste with Fridge Assistant today!  
