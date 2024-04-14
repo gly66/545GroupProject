@@ -66,6 +66,7 @@ Web/Cloud Interactions: Use of APIs for sending notifications/reminders and acce
 Measurement of Success: Metrics may include user engagement (number of active users, frequency of app usage), reduction in food waste (tracked through user input on expired items), and user satisfaction (gathered through feedback surveys or ratings).
 
 **Dependencies**
+
 Email service API for user authentication and notifications.
 Recipe API for accessing recipe information.
 Cloud storage service for data storage and retrieval.
