@@ -1,9 +1,11 @@
 # A sketch/mockup containing the minimum UI/UX required to deliver value
+https://www.figma.com/file/hpxhgQN4Ugr54GuaLC8FdG/Fridge-Parter?type=design&node-id=0%3A1&mode=dev&t=iF1md01EfQCmCWZd-1
 ![image](https://github.com/gly66/545GroupProject/assets/80219810/aba9c3cb-11f8-4317-ae03-9c869715f01e)
 
 # Brief description on how the design is relevant to the target demographic
 Our target customers are extended families and co-tenants. Fridge Partner offers fridge management, food management, and other features. Each person can create their account, create their fridge, and invite other members to join. Within each fridge group, each member can add, delete, and modify food, and each action is logged. Therefore, the Fridge Partner can help to separate the food of different people in the group, so as to effectively manage the food in the refrigerator. Our Fridge Partner also provides expiration reminders to remind users to consume or dispose of food as soon as possible to minimize food waste. In addition to this, Fridge Partner also provides recipe suggestions to help users consume the ingredients in the fridge.
 # UX flowchart (or other visualization) to demonstrate E2E experience
+![Fridge Parter](https://github.com/gly66/545GroupProject/assets/80219810/4ece2115-1c8a-4c19-8c32-3ff6050c3696)
 
 # Happy path
 Create account -> login -> Add fridge & Invite members -> Add/Delete food -> Set reminders -> Get reminders -> Manage fridge -> Search recipe -> Manage account
