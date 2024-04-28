@@ -55,9 +55,11 @@ The MVP will focus on basic functionalities including user authentication, fridg
 ### UI/UX Design
 Login/Register Page: Simple email/password authentication.
 
-First Page: Add/Create fridge with a name, invite/manage members via email.
+Home Page 1: Add/Create fridge with a name.
 
-Home Page: Intuitive layout for adding/deleting food items, editing quantities, and setting expiration dates. Alerts and notifications for reminders displayed prominently.
+Home Page 2: Intuitive layout for adding/deleting food items, editing quantities, and setting expiration dates. Alerts and notifications for reminders displayed prominently.
+
+Fridge Page: Display the food  in the fridge.
 
 User Page: Profile settings including user name, email, and password management.
 
