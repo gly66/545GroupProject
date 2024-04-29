@@ -1,12 +1,22 @@
 package com.example.fridge_partner;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.example.fridge_partner.CreateFridgePopWin;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +29,7 @@ public class HomeFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -59,6 +70,37 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        FloatingActionButton AddButton = view.findViewById(R.id.floatingActionButton);
+        CreateFridgePopWin CreateWin = new CreateFridgePopWin(getActivity());
+        View Fridge1 = view.findViewById(R.id.fridge1);
+        Fridge1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ThirdMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        View Fridge2 = view.findViewById(R.id.fridge2);
+        Fridge2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ThirdMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        AddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CreateWin.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+//                CreateWin.dismiss();
+            }
+        });
+        return view;
     }
 }

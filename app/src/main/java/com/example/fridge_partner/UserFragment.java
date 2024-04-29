@@ -1,5 +1,7 @@
 package com.example.fridge_partner;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +69,11 @@ public class UserFragment extends Fragment {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 登出后取消自动登录
+                SharedPreferences preferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear().commit();
+
                 // 在这里执行登出操作
                 // 例如，返回到 MainActivity
                 startActivity(new Intent(getActivity(), MainActivity.class));
