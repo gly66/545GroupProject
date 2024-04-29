@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue"
+    tools:context=".UserFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Account"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/dark_blue"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="86dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/people" />
+
+    <TextView
+        android:id="@+id/useremail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/custom_edittext"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:paddingLeft="40dp"
+        android:drawablePadding="10dp"
+        android:text="Email : user@gmail.com"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textColorHighlight="@color/cardview_dark_background" />
+    <TextView
+        android:id="@+id/userpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/custom_edittext"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:paddingLeft="40dp"
+        android:drawablePadding="10dp"
+        android:text="Password : ******"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textColorHighlight="@color/cardview_dark_background" />
+
+    <Button
+        android:id="@+id/logoutbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        android:layout_gravity="center"/>
+
+</FrameLayout>
