@@ -20,14 +20,14 @@ public class MainActivity extends Activity {
         // 关联activity.xml
         setContentView(R.layout.activity_main);
 
-        // 登录成功后，再次启动app自动登录
-       // SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        // String username = preferences.getString("username", "");
-       // String password = preferences.getString("password", "");
-      //  if (!username.isEmpty() && !password.isEmpty()) {
-       //     Intent intent = new Intent(MainActivity.this, SecMainActivity.class);
-      //      startActivity(intent);
-      //  }
+//         登录成功后，再次启动app自动登录
+        SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+         String username = preferences.getString("username", "");
+        String password = preferences.getString("password", "");
+        if (!username.isEmpty() && !password.isEmpty()) {
+            Intent intent = new Intent(MainActivity.this, SecMainActivity.class);
+            startActivity(intent);
+        }
 
         // 关联用户名、密码和登录、注册按钮
         EditText userName = (EditText) this.findViewById(R.id.username);
