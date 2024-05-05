@@ -1,5 +1,5 @@
 # 545GroupProject
-Fridge Assistant  
+Fridge Partner  
 
 Wendy Wen, Jeremy Gao  
 
