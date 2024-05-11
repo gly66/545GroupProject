@@ -2,68 +2,79 @@ package com.example.fridge_partner;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class CreateFridgePopWin extends PopupWindow {
 
     private Context mContext;
-
     private View view;
-
-    private Button btn_create_pop;
-
-    public EditText text_name;
-
-    public EditText text_description;
-
+    private Button btn_create, btn_reset, buttonIncreaseForzen, buttonDecreaseForzen, buttonIncreaseFreezing, buttonDecreaseFreezing;
+    private EditText editTextForzen, editTextFreezing, editTextName, editTextDescription;
 
     public CreateFridgePopWin(Activity mContext) {
-
         this.mContext = mContext;
-
         this.view = LayoutInflater.from(mContext).inflate(R.layout.create_fridge, null);
 
-        text_name = (EditText) view.findViewById(R.id.fridgename);
-        text_description= (EditText) view.findViewById(R.id.description);
+        // Initialize components
+        editTextName = view.findViewById(R.id.fridgename);
+        editTextDescription = view.findViewById(R.id.description);
+        editTextForzen = view.findViewById(R.id.editTextForzen);
+        editTextFreezing = view.findViewById(R.id.editTextFreezing);
+        buttonIncreaseForzen = view.findViewById(R.id.buttonIncreaseForzen);
+        buttonDecreaseForzen = view.findViewById(R.id.buttonDecreaseForzen);
+        buttonIncreaseFreezing = view.findViewById(R.id.buttonIncreaseFreezing);
+        buttonDecreaseFreezing = view.findViewById(R.id.buttonDecreaseFreezing);
+        btn_create = view.findViewById(R.id.createButton);
+        btn_reset = view.findViewById(R.id.resetButton);
 
-        btn_create_pop =  (Button) view.findViewById(R.id.createButton);
+        // Setup listeners for increment and decrement
+        setupIncrementDecrementListeners(buttonIncreaseForzen, buttonDecreaseForzen, editTextForzen);
+        setupIncrementDecrementListeners(buttonIncreaseFreezing, buttonDecreaseFreezing, editTextFreezing);
 
-        // 设置按钮监听
-//        btn_create_pop.setOnClickListener(itemsOnClick);
+        // Set button listeners
+        btn_create.setOnClickListener(v -> {
+            // Implement create functionality
+            // This could involve collecting all input data and sending it to a server or local database
+        });
 
-        // 设置外部可点击
-        this.setOutsideTouchable(true);
+        btn_reset.setOnClickListener(v -> {
+            resetFields();
+        });
 
+        // Set properties of the popup window
+        setOutsideTouchable(true);
+        setContentView(this.view);
+        setHeight(RelativeLayout.LayoutParams.WRAP_CONTENT);
+        setWidth((int) (mContext.getResources().getDisplayMetrics().widthPixels * 0.95));
+        setFocusable(true);
 
-        /* 设置弹出窗口特征 */
-        // 设置视图
-        this.setContentView(this.view);
-
-        // 设置弹出窗体的宽和高
-        /*
-         * 获取圣诞框的窗口对象及参数对象以修改对话框的布局设置, 可以直接调用getWindow(),表示获得这个Activity的Window
-         * 对象,这样这可以以同样的方式改变这个Activity的属性.
-         */
-        Window dialogWindow = mContext.getWindow();
-
-        WindowManager m = mContext.getWindowManager();
-        Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-        WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
-
-        this.setHeight(RelativeLayout.LayoutParams.WRAP_CONTENT);
-        this.setWidth((int) (d.getWidth() * 0.8));
-
-        // 设置弹出窗体可点击
-        this.setFocusable(true);
 
     }
 
+    private void setupIncrementDecrementListeners(Button increase, Button decrease, EditText editText) {
+        increase.setOnClickListener(v -> {
+            int currentValue = Integer.parseInt(editText.getText().toString());
+            editText.setText(String.valueOf(currentValue + 1));
+        });
+        decrease.setOnClickListener(v -> {
+            int currentValue = Integer.parseInt(editText.getText().toString());
+            if (currentValue > 0) {
+                editText.setText(String.valueOf(currentValue - 1));
+            }
+        });
+    }
+
+    private void resetFields() {
+        editTextName.setText("");
+        editTextDescription.setText("");
+        editTextForzen.setText("0");
+        editTextFreezing.setText("0");
+    }
 }
