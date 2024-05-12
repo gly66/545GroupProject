@@ -9,42 +9,43 @@ import android.os.Bundle;
 import com.example.fridge_partner.databinding.ActivityMain2Binding;
 import com.example.fridge_partner.databinding.ActivityMainBinding;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SecMainActivity extends AppCompatActivity {
     ActivityMain2Binding binding;
 
+    private final Map<Integer, Fragment> fragments = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
 
+        setupFragments();
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            int itemId = item.getItemId();
-            if (itemId == R.id.home) {
-                replaceFragment(new HomeFragment());
-            } else if (itemId == R.id.recipe) {
-                replaceFragment(new RecipeFragment());
-            } else if (itemId == R.id.user) {
-                replaceFragment(new UserFragment());
-            }
 
-
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame_layout, fragments.get(item.getItemId()))
+                    .commit();
 
             return true;
         });
 
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void setupFragments() {
+        fragments.put(R.id.home, new HomeFragment());
+        fragments.put(R.id.recipe, new RecipeFragment());
+        fragments.put(R.id.user, new UserFragment());
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,fragment);
-        fragmentTransaction.commit();
-
-
+//         Initially display the first fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, fragments.get(R.id.home))
+                .commit();
     }
+
+
 }
 
