@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
-    tools:context=".RecipeFragment">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Food in Fridge"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
+        android:text="Frozen"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/dark_blue"
         android:textSize="20dp"
         android:textStyle="bold"/>
-
-    <TableRow
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/frozenRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="70dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <Button
+        android:id="@+id/addFrozenButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Food" />
 
-        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Freeze"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/dark_blue"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/freezeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <Button
+        android:id="@+id/addFreezeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Food" />
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            />
-    </TableRow>
-
-
-
-</FrameLayout>
+</LinearLayout>

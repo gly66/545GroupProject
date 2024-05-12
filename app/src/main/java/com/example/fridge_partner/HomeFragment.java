@@ -1,22 +1,22 @@
 package com.example.fridge_partner;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.EditText;
 
-import com.example.fridge_partner.CreateFridgePopWin;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +29,10 @@ public class HomeFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private RecyclerView mRecyclerView;
+    private FridgeAdapter mAdapter;
+    private ArrayList<FridgeAdapter.Item> mFridgeList;
 
 
     // TODO: Rename and change types of parameters
@@ -72,35 +76,99 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         FloatingActionButton AddButton = view.findViewById(R.id.floatingActionButton);
-        CreateFridgePopWin CreateWin = new CreateFridgePopWin(getActivity());
-        View Fridge1 = view.findViewById(R.id.fridge1);
-        Fridge1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ThirdMainActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        View Fridge2 = view.findViewById(R.id.fridge2);
-        Fridge2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ThirdMainActivity.class);
-                startActivity(intent);
-            }
+
+        mFridgeList = new ArrayList<>();
+        mFridgeList.add(new FridgeAdapter.Item("Fridge 1", "Description", R.drawable.fridge));
+
+        mRecyclerView = view.findViewById(R.id.fridgeRecyclerView);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        mAdapter = new FridgeAdapter(mFridgeList, fridge -> {
+            Intent intent = new Intent(getActivity(), ThirdMainActivity.class);
+            intent.putExtra("fridgeName", fridge);
+            startActivity(intent);
         });
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 50, true)); // Adjust spacing as necessary
+
 
 
         AddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                CreateWin.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-//                CreateWin.dismiss();
+                showDialog();
             }
         });
         return view;
     }
+
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.create_fridge, null);
+        builder.setView(dialogView);
+
+        final EditText editTextName = dialogView.findViewById(R.id.fridgename);
+        final EditText editTextDescription = dialogView.findViewById(R.id.description);
+        final EditText editTextForzen = dialogView.findViewById(R.id.editTextForzen);
+        final EditText editTextFreezing = dialogView.findViewById(R.id.editTextFreezing);
+        Button buttonIncreaseForzen = dialogView.findViewById(R.id.buttonIncreaseForzen);
+        Button buttonDecreaseForzen = dialogView.findViewById(R.id.buttonDecreaseForzen);
+        Button buttonIncreaseFreezing = dialogView.findViewById(R.id.buttonIncreaseFreezing);
+        Button buttonDecreaseFreezing = dialogView.findViewById(R.id.buttonDecreaseFreezing);
+//        Button btn_create = dialogView.findViewById(R.id.createButton);
+//        Button btn_reset = dialogView.findViewById(R.id.resetButton);
+
+        setupIncrementDecrementListeners(buttonIncreaseForzen, buttonDecreaseForzen, editTextForzen);
+        setupIncrementDecrementListeners(buttonIncreaseFreezing, buttonDecreaseFreezing, editTextFreezing);
+        builder.setPositiveButton("Create", (dialog, which) ->addFridge(editTextName.getText().toString(),editTextDescription.getText().toString()));
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+//        btn_create.setOnClickListener(v -> {
+//             Implement create functionality
+//             This could involve collecting all input data and sending it to a server or local database
+//            addFridge(editTextName.getText().toString(),editTextDescription.getText().toString());
+//            dialog.dismiss();
+//        });
+//
+//        btn_reset.setOnClickListener(v -> {
+//            resetFields();
+//        });
+
+        builder.show();
+    }
+
+    private void setupIncrementDecrementListeners(Button increase, Button decrease, EditText editText) {
+        increase.setOnClickListener(v -> {
+            int currentValue = Integer.parseInt(editText.getText().toString());
+            if (currentValue < 3){
+                editText.setText(String.valueOf(currentValue + 1));
+            }
+        });
+        decrease.setOnClickListener(v -> {
+            int currentValue = Integer.parseInt(editText.getText().toString());
+            if (currentValue > 0) {
+                editText.setText(String.valueOf(currentValue - 1));
+            }
+        });
+    }
+
+//    private void resetFields() {
+//        editTextName.setText("");
+//        editTextDescription.setText("");
+//        editTextForzen.setText("0");
+//        editTextFreezing.setText("0");
+//    }
+
+    public void addFridge(String fridge, String description) {
+
+        mFridgeList.add(new FridgeAdapter.Item(fridge, description, R.drawable.fridge));
+        mAdapter.notifyItemInserted(mFridgeList.size() - 1);
+
+    }
+
+
 }
