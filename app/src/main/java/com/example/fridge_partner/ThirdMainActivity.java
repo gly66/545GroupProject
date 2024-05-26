@@ -26,8 +26,6 @@ public class ThirdMainActivity extends AppCompatActivity {
     private ArrayList<FoodAdapter.FoodItem> mFoodList;
     private Button mAddFoodButton;
 
-    private String preDate,Date;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +90,7 @@ public class ThirdMainActivity extends AppCompatActivity {
         CalendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDate();
-                editTextDescription.setText(Date);
+                showDate(editTextDescription);
             }
         });
 
@@ -110,7 +107,7 @@ public class ThirdMainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void showDate() {
+    private void showDate(EditText editTextDescription) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(ThirdMainActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -119,9 +116,8 @@ public class ThirdMainActivity extends AppCompatActivity {
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault());
                 String selectedDate = dateFormat.format(calendar.getTime());
+                editTextDescription.setText(selectedDate);
 
-                preDate = Date;
-                Date = selectedDate;
             }
         }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
