@@ -8,13 +8,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.widget.Toast;
 
+import android.Manifest;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import android.content.pm.PackageManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.AlarmManager;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.os.Build;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -25,14 +37,15 @@ public class ThirdMainActivity extends AppCompatActivity {
     private FoodAdapter mFoodAdapter;
     private ArrayList<FoodAdapter.FoodItem> mFoodList;
     private Button mAddFoodButton;
-
+    private static final int REQUEST_CODE_POST_NOTIFICATIONS = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_main);
+        createNotificationChannel();
 
         mFoodList = new ArrayList<>();
-        mFoodAdapter = new FoodAdapter(mFoodList);
+        mFoodAdapter = new FoodAdapter(mFoodList,this);
 
         mFoodRecyclerView = findViewById(R.id.frozenRecyclerView);
         mFoodRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -46,6 +59,13 @@ public class ThirdMainActivity extends AppCompatActivity {
                 showDialog();
             }
         });
+        // Check and request notification permission for Android 13 and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_CODE_POST_NOTIFICATIONS);
+            }
+        }
+
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -122,6 +142,58 @@ public class ThirdMainActivity extends AppCompatActivity {
         }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
         datePickerDialog.show();
+    }
+
+    public void showDatePickerDialog(FoodAdapter.FoodItem foodItem) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, selectedYear, selectedMonth, selectedDay) -> {
+            calendar.set(Calendar.YEAR, selectedYear);
+            calendar.set(Calendar.MONTH, selectedMonth);
+            calendar.set(Calendar.DAY_OF_MONTH, selectedDay);
+            showTimePickerDialog(calendar, foodItem);
+        }, year, month, day);
+
+        datePickerDialog.show();
+    }
+
+    private void showTimePickerDialog(Calendar calendar, FoodAdapter.FoodItem foodItem) {
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view, selectedHour, selectedMinute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, selectedHour);
+            calendar.set(Calendar.MINUTE, selectedMinute);
+            scheduleAlarm(calendar.getTimeInMillis(), foodItem);
+        }, hour, minute, true);
+
+        timePickerDialog.show();
+    }
+
+    private void scheduleAlarm(long timeInMillis, FoodAdapter.FoodItem foodItem) {
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        intent.putExtra("FoodName", foodItem.getFoodName());
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, (int) timeInMillis, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+
+        Toast.makeText(this, "Alarm set for " + foodItem.getFoodName(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "AlarmChannel";
+            String description = "Channel for Alarm Manager";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("alarmChannel", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }
