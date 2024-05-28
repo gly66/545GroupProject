@@ -5,25 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".UserFragment">
+    tools:context=".fragment.UserFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Account"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="User Account"
         android:textColor="@color/dark_blue"
         android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="86dp"
         android:layout_height="93dp"
-        android:layout_marginTop="80dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/people" />
 
     <TextView
@@ -33,12 +33,13 @@
         android:layout_marginTop="200dp"
         android:background="@drawable/custom_edittext"
         android:drawableLeft="@drawable/baseline_person_24"
-        android:paddingLeft="40dp"
         android:drawablePadding="10dp"
+        android:paddingLeft="40dp"
         android:text="Email : user@gmail.com"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        android:textColorHighlight="@color/cardview_dark_background" />
+        android:textColorHighlight="@color/cardview_dark_background"
+        android:textSize="18dp" />
+
     <TextView
         android:id="@+id/userpassword"
         android:layout_width="wrap_content"
@@ -46,18 +47,29 @@
         android:layout_marginTop="250dp"
         android:background="@drawable/custom_edittext"
         android:drawableLeft="@drawable/baseline_lock_24"
-        android:paddingLeft="40dp"
         android:drawablePadding="10dp"
+        android:paddingLeft="40dp"
         android:text="Password : ******"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        android:textColorHighlight="@color/cardview_dark_background" />
+        android:textColorHighlight="@color/cardview_dark_background"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/logoutbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log out"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:text="Log out" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+
+        android:src="@drawable/baseline_add_24" />
 
 </FrameLayout>

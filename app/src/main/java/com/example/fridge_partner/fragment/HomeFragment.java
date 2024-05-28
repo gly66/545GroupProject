@@ -1,9 +1,10 @@
-package com.example.fridge_partner;
+package com.example.fridge_partner.fragment;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,16 +15,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.fridge_partner.GridSpacingItemDecoration;
+import com.example.fridge_partner.R;
+import com.example.fridge_partner.ThirdMainActivity;
+import com.example.fridge_partner.adapter.FridgeAdapter;
+import com.example.fridge_partner.entity.FridgeEntity;
+import com.example.fridge_partner.model.FridgeModelManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements FridgeAdapter.OnFridgeClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,10 +40,8 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private FridgeAdapter mAdapter;
-    private ArrayList<FridgeAdapter.Item> mFridgeList;
+    private List<FridgeEntity> mFridgeList;
 
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -79,27 +85,17 @@ public class HomeFragment extends Fragment {
 
 
         mFridgeList = new ArrayList<>();
-        mFridgeList.add(new FridgeAdapter.Item("Fridge 1", "Description", R.drawable.fridge));
+        mFridgeList.addAll(FridgeModelManager.getModels());
 
         mRecyclerView = view.findViewById(R.id.fridgeRecyclerView);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        mAdapter = new FridgeAdapter(mFridgeList, fridge -> {
-            Intent intent = new Intent(getActivity(), ThirdMainActivity.class);
-            intent.putExtra("fridgeName", fridge);
-            startActivity(intent);
-        });
+        mAdapter = new FridgeAdapter(mFridgeList, this);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 50, true)); // Adjust spacing as necessary
+        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 30, true)); // Adjust spacing as necessary
 
 
-
-        AddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog();
-            }
-        });
+        AddButton.setOnClickListener(v -> showDialog());
         return view;
     }
 
@@ -124,7 +120,14 @@ public class HomeFragment extends Fragment {
 
         setupIncrementDecrementListeners(buttonIncreaseForzen, buttonDecreaseForzen, editTextForzen);
         setupIncrementDecrementListeners(buttonIncreaseFreezing, buttonDecreaseFreezing, editTextFreezing);
-        builder.setPositiveButton("Create", (dialog, which) ->addFridge(editTextName.getText().toString(),editTextDescription.getText().toString()));
+
+        builder.setPositiveButton("Create", (dialog, which) -> {
+            String num1 = editTextForzen.getText().toString();
+            String num2 = editTextFreezing.getText().toString();
+            String name = editTextName.getText().toString();
+            String desc = editTextDescription.getText().toString();
+            addFridge(name, desc, num1, num2);
+        });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
 //        btn_create.setOnClickListener(v -> {
@@ -144,7 +147,7 @@ public class HomeFragment extends Fragment {
     private void setupIncrementDecrementListeners(Button increase, Button decrease, EditText editText) {
         increase.setOnClickListener(v -> {
             int currentValue = Integer.parseInt(editText.getText().toString());
-            if (currentValue < 3){
+            if (currentValue < 3) {
                 editText.setText(String.valueOf(currentValue + 1));
             }
         });
@@ -156,19 +159,42 @@ public class HomeFragment extends Fragment {
         });
     }
 
-//    private void resetFields() {
-//        editTextName.setText("");
-//        editTextDescription.setText("");
-//        editTextForzen.setText("0");
-//        editTextFreezing.setText("0");
-//    }
 
-    public void addFridge(String fridge, String description) {
-
-        mFridgeList.add(new FridgeAdapter.Item(fridge, description, R.drawable.fridge));
+    public void addFridge(String fridge, String description, String num1, String num2) {
+        int num11 = Integer.parseInt(num1);
+        int num22 = Integer.parseInt(num2);
+        FridgeEntity entity = new FridgeEntity(fridge, description, num11, num22);
+        List<FridgeEntity> fridgeEntities = FridgeModelManager.addFridge(entity);
+        mFridgeList.clear();
+        mFridgeList.addAll(fridgeEntities);
         mAdapter.notifyItemInserted(mFridgeList.size() - 1);
-
     }
 
 
+    @Override
+    public void onFridgeClick(FridgeEntity entity) {
+        ThirdMainActivity.startThirdMainActivity(this.getContext(),entity);
+    }
+
+    @Override
+    public void onFridgeLongClick(FridgeEntity entity) {
+        Activity activity = getActivity();
+        if (activity != null) {
+            AlertDialog longClickDialog = new AlertDialog.Builder(activity)
+                    .setTitle("Tips")
+                    .setMessage("Do you want delete " + entity.getTitle())
+                    .setNegativeButton("cancel", (dialog, which) -> {
+
+                    })
+                    .setPositiveButton("ok", (dialog, which) -> {
+                        FridgeModelManager.deleteFridge(entity);
+                        int index = mFridgeList.indexOf(entity);
+                        mFridgeList.remove(entity);
+                        mAdapter.notifyItemRemoved(index);
+                    }).show();
+            longClickDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setTextColor(ContextCompat.getColor(activity, R.color.teal_200));
+        }
+
+    }
 }

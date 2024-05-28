@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/tvFridgeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/dark_blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Fridge" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Frozen"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
+        android:text="Refrigerate"
         android:textColor="@color/dark_blue"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/frozenRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
+
     <Button
         android:id="@+id/addFrozenButton"
         android:layout_width="match_parent"
@@ -28,17 +44,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Freeze"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
+        android:text="Freeze"
         android:textColor="@color/dark_blue"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/freezeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
+
     <Button
         android:id="@+id/addFreezeButton"
         android:layout_width="match_parent"

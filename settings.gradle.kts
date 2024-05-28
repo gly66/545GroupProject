@@ -1,3 +1,5 @@
+import java.net.URL
+
 pluginManagement {
     repositories {
         google {
@@ -16,6 +18,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+//        maven("https://maven.aliyun.com/repository/google")
+        maven("https://jcenter.bintray.com/")
+//        maven{ uri("https://maven.aliyun.com/repository/google")}
     }
 }
 

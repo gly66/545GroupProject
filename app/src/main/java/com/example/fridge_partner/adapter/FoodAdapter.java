@@ -1,7 +1,9 @@
-package com.example.fridge_partner;
+package com.example.fridge_partner.adapter;
 
 
 // java/FoodAdapter.java
+
+import static com.example.fridge_partner.ThirdMainActivity.TIME_FORMAT;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +15,21 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.blankj.utilcode.util.TimeUtils;
+import com.example.fridge_partner.R;
+import com.example.fridge_partner.ThirdMainActivity;
+import com.example.fridge_partner.entity.FoodEntity;
+
+import java.util.Date;
 import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
-    private List<FoodItem> foodItems;
-    private Context context;
+    private final List<FoodEntity> foodItems;
 
-    public FoodAdapter(List<FoodItem> foodItems, Context context) {
-
+    public FoodAdapter(List<FoodEntity> foodItems) {
         this.foodItems = foodItems;
-        this.context = context;
     }
 
     @NonNull
@@ -35,13 +41,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        FoodItem foodItem = foodItems.get(position);
-        holder.textViewFoodName.setText(foodItem.getFoodName());
-        holder.textViewExpiryDate.setText(foodItem.getExpiryDate());
+        FoodEntity foodItem = foodItems.get(position);
+        holder.textViewFoodName.setText(foodItem.getName());
+        holder.textViewExpiryDate.setText(TimeUtils.date2String(new Date(foodItem.getExpiryDate()), TimeUtils.getSafeDateFormat(TIME_FORMAT)));
         holder.buttonSetAlarm.setOnClickListener(v -> {
-            // Placeholder for set alarm functionality here !!
-            ((ThirdMainActivity) context).showDatePickerDialog(foodItem);
-            Toast.makeText(v.getContext(), "Alarm Set for: ",Toast.LENGTH_LONG).show();
+            Context context = holder.itemView.getContext();
+            if (context instanceof ThirdMainActivity) {
+                ThirdMainActivity activity = (ThirdMainActivity) context;
+                activity.showDatePickerDialog(foodItem);
+            }
+            Toast.makeText(v.getContext(), "Alarm Set for: ", Toast.LENGTH_LONG).show();
 
         });
     }
@@ -52,13 +61,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     }
 
 
-    public void removeFood(int position) {
-        if (position < foodItems.size()) {
-            foodItems.remove(position);
-            notifyItemRemoved(position);
-        }
-    }
-
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textViewFoodName, textViewExpiryDate;
         Button buttonSetAlarm;
@@ -68,24 +70,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             textViewFoodName = itemView.findViewById(R.id.textViewFoodName);
             textViewExpiryDate = itemView.findViewById(R.id.textViewExpiryDate);
             buttonSetAlarm = itemView.findViewById(R.id.buttonSetAlarm);
-        }
-    }
-
-    public static class FoodItem {
-        private String foodName;
-        private String expiryDate;
-
-        public FoodItem(String foodName, String expiryDate) {
-            this.foodName = foodName;
-            this.expiryDate = expiryDate;
-        }
-
-        public String getFoodName() {
-            return foodName;
-        }
-
-        public String getExpiryDate() {
-            return expiryDate;
         }
     }
 

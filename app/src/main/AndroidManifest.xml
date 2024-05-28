@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -34,10 +35,19 @@
             android:name=".RegisterActivity"
             android:exported="false"
             android:label="RegisterActivity" />
+
+
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".SecMainActivity"
             android:exported="false"
-            android:label="SecMainActivity"/>
+            android:label="SecMainActivity" />
+
+        <activity
+            android:name=".NoteActivity"
+            android:exported="false" />
 
 
         <!-- Splash Screen Activity -->

@@ -49,4 +49,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("org.litepal.guolindev:core:3.2.3")
+    implementation ("com.blankj:utilcodex:1.31.1")
 }
