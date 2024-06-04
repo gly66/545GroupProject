@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 545GroupProject
 Fridge Assistant  
 
@@ -103,6 +104,4 @@ What optimizations can be made to ensure smooth operation under varied connectiv
 
 **Reference**  
 [1]https://www.waste360.com/food-waste/study-shows-how-much-food-americans-waste-every-year  
-
-
 

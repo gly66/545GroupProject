@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="fridge" />
+
+
+    <version value="2" />
+
+    <list>
+        <!--根据model映射创建表-->
+        <mapping class="com.example.fridge_partner.entity.NoteEntity" />
+        <mapping class="com.example.fridge_partner.entity.FridgeEntity" />
+        <mapping class="com.example.fridge_partner.entity.FoodEntity" />
+    </list>
+
+</litepal>
