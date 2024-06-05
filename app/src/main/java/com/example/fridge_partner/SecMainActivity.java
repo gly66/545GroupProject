@@ -22,11 +22,11 @@ import java.util.List;
 public class SecMainActivity extends AppCompatActivity {
     ActivityMain2Binding binding;
 
+
     //    private final Map<Integer, Fragment> fragments = new HashMap<>();
     private final List<Fragment> fragments2 = new ArrayList<>();
     private final List<Integer> ids = new ArrayList<>();
     NoteFragment noteFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

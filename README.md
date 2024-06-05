@@ -1,9 +1,10 @@
 # 545GroupProject
-Fridge Assistant  
+Fridge Partner  
 
 Wendy Wen, Jeremy Gao  
 
 Version #4.0 final
+
 
 ## Summary of Project  
 Your kitchen companion! Say goodbye to food waste and fridge rummaging. With 40% of food waste occurring at home (EPA), our app empowers users to reduce waste by tracking fridge contents and expiry dates with precision. Discover recipe ideas based on available ingredients, linked to Chrome for detailed cooking instructions. Plus, streamline household management with multi-device and multi-account support. Join us in revolutionizing kitchen efficiency and minimizing food waste with Fridge Assistant today!  
@@ -55,9 +56,11 @@ The MVP will focus on basic functionalities including user authentication, fridg
 ### Initial UI/UX Design (Final edition is a little bit different)
 Login/Register Page: Simple email/password authentication.
 
-First Page: Add/Create fridge with a name, invite/manage members via email.
+Home Page 1: Add/Create fridge with a name.
 
-Home Page: Intuitive layout for adding/deleting food items, editing quantities, and setting expiration dates. Alerts and notifications for reminders displayed prominently.
+Home Page 2: Intuitive layout for adding/deleting food items, editing quantities, and setting expiration dates. Alerts and notifications for reminders displayed prominently.
+
+Fridge Page: Display the food  in the fridge.
 
 User Page: Profile settings including user name, email, and password management.
 

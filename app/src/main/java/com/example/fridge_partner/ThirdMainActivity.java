@@ -2,6 +2,7 @@ package com.example.fridge_partner;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import androidx.core.util.Pair;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.os.Build;
 
@@ -142,6 +144,7 @@ public class ThirdMainActivity extends AppCompatActivity {
         EditText editTextDescription = dialogView.findViewById(R.id.editTextDescription);
         Button CalendarButton = dialogView.findViewById(R.id.button);
 
+
         CalendarButton.setOnClickListener(v -> showDate(editTextDescription));
 
         // Set up the buttons
@@ -152,6 +155,7 @@ public class ThirdMainActivity extends AppCompatActivity {
 
         builder.show();
     }
+
 
     private void handleFood(EditText editTextName, EditText editTextDescription, int type) {
         String foodName = editTextName.getText().toString();
@@ -209,6 +213,7 @@ public class ThirdMainActivity extends AppCompatActivity {
             calendar.set(Calendar.DAY_OF_MONTH, selectedDay);
             showTimePickerDialog(calendar, foodItem);
         }, year, month, day);
+
 
         datePickerDialog.show();
     }
@@ -272,4 +277,5 @@ class DeleteItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         activity.removeFood(viewHolder.getAbsoluteAdapterPosition(), type);
     }
+
 }

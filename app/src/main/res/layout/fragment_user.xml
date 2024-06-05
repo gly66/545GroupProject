@@ -24,6 +24,7 @@
         android:layout_height="93dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="80dp"
+
         android:src="@drawable/people" />
 
     <TextView
