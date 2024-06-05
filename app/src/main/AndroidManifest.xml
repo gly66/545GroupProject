@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:name=".App"
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,22 +29,42 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:label="MainActivity" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:label="RegisterActivity" />
+
+
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="false" />
+
         <activity
             android:name=".SecMainActivity"
             android:exported="false"
             android:label="SecMainActivity" />
+
+        <activity
+            android:name=".NoteActivity"
+            android:exported="false" />
+
+
+        <!-- Splash Screen Activity -->
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:label="SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".AlarmReceiver" />
+
     </application>
 
 </manifest>

@@ -18,29 +18,19 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="12dp"
-            android:text="Fridge"
+            android:text="Notes"
             android:textColor="@color/dark_blue"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/fridge1"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/noteRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/light_blue"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fridgeRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
-
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -58,4 +48,3 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

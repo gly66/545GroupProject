@@ -3,7 +3,8 @@ Fridge Partner
 
 Wendy Wen, Jeremy Gao  
 
-Version #4.0
+Version #4.0 final
+
 
 ## Summary of Project  
 Your kitchen companion! Say goodbye to food waste and fridge rummaging. With 40% of food waste occurring at home (EPA), our app empowers users to reduce waste by tracking fridge contents and expiry dates with precision. Discover recipe ideas based on available ingredients, linked to Chrome for detailed cooking instructions. Plus, streamline household management with multi-device and multi-account support. Join us in revolutionizing kitchen efficiency and minimizing food waste with Fridge Assistant today!  
@@ -52,7 +53,7 @@ The MVP of our Fridge Assistant app aims to provide users with a seamless experi
 
 The MVP will focus on basic functionalities including user authentication, fridge creation, member invitation, food inventory management, expiration date tracking, notifications/reminders, and access to recipe information. Limitations may include lack of advanced features such as barcode scanning and integrations with grocery delivery services.
 
-### UI/UX Design
+### Initial UI/UX Design (Final edition is a little bit different)
 Login/Register Page: Simple email/password authentication.
 
 Home Page 1: Add/Create fridge with a name.
@@ -85,17 +86,14 @@ Cloud storage service for data storage and retrieval.
 
 ## Challenges and Open Questions  
 **Technical Challenges**  
-User Interface Usability:  
-Challenge: Creating an intuitive and user-friendly interface that can be easily navigated by all user demographics, including those less tech-savvy.  
-Solution: Focus on UX/UI design principles, conduct user testing with diverse groups to gather feedback, and iterate designs based on this feedback. Consider accessibility features to accommodate all users.  
+Permissions:
+You will be asked for permissions to linking internet and notifications when you first enter the app.
+  
+Interaction with web services:
+We interacted the Google website to get more recipes searching.
 
-Online connectivity:  
-Challenge: The challenge of requiring constant online connectivity for data sharing in your fridge management app is a significant one, especially given the need for real-time synchronization among multiple users, such as family members or co-renters.  
-Solution: Develop the app to primarily function online to enable real-time data sharing and updates. This ensures that all users have the most current information about the fridge contents, reducing the risk of food waste and miscommunication. Also, We can Implement offline features that allow users to access and manage the fridge inventory even without an internet connection.  
-
-Data storage:  
-Challenge: Ensuring robust data storage and management is critical for the success of your fridge management app, especially given its reliance on accurate and timely information about users' fridge contents.  
-Solution: Utilize reliable cloud services for storing and managing data to ensure scalability, security, and high availability. Cloud storage will allow users to access their data from any device and facilitate easier updates and backups.  
+Interaction with other apps/services on the same device:
+When you set an alarm for your food when it expires, your phone will have a pop-up alert when it expires.
 
 **Open Questions**  
 What features do users find most engaging in similar apps? How can we incorporate or improve these features in our app to enhance user engagement?  
@@ -105,6 +103,4 @@ What optimizations can be made to ensure smooth operation under varied connectiv
 
 **Reference**  
 [1]https://www.waste360.com/food-waste/study-shows-how-much-food-americans-waste-every-year  
-
-
 

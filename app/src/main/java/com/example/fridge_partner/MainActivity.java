@@ -68,6 +68,7 @@ public class MainActivity extends Activity {
             }
         });
     }
+
     private void saveUserName() {
         SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -75,4 +76,6 @@ public class MainActivity extends Activity {
         editor.putString("password", "123456");
         editor.apply();
     }
+
 }
+
